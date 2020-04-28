@@ -33,24 +33,42 @@
 
                 <div class="form-group">
                     <label for="titulo" class="text-monospace">Titulo</label>
-                    <input type="text" name="titulo" id="titulo" class="form-control" placeholder="Digite o teu titulo">
+                    <input type="text" name="titulo" id="titulo" class="form-control" 
+                    placeholder="Digite o teu titulo" [(ngModel)]= "postagem.titulo">
                 </div>
 
                 <div class="form-group">
                     <label for="texto">Texto:</label>
-                    <textarea name="texto" id="texto" cols="30" rows="4" class="form-control" placeholder="Digite seu texto"></textarea>
+                    <textarea name="texto" id="texto" cols="30" rows="4" class="form-control" placeholder="Digite seu texto" [(ngModel)]="postagem.texto"></textarea>
                 </div>
                
                 <div class="d-flex justify-content-end">
-                    <button class="btn btn-outline-info w-25">Publicar</button>
+                    <button class="btn btn-outline-info w-25" (click)="publicar()">Publicar</button>
                 </div>
 
             </div>
 
             <hr class="mb-5 mt-5">
 
-            <h3 class="text-monospace text-center">Minhas postagens</h3>
+            <h3 class="text-monospace text-center mb-4">Minhas postagens</h3>
             
+            <div class="card mb-4" *ngFor="let postagem of listaPostagens">
+
+                <div class="card-header">
+                   <h5 class="card-title"> {{ postagem.titulo }} </h5>
+                </div>
+
+                <div class="card-body">
+                    <p card-text>{{ postagem.texto }}</p>
+                    
+                    <small class="form-text m-0 text-muted mb-3 text-monospace">
+                        Postado em  {{ postagem.data | date:'dd/MM/yyyy'}} às {{ postagem.data | date:'HH:mm' }}
+                    </small>
+                    
+                </div>
+
+            </div>
+
         </div>
     
     </div>
